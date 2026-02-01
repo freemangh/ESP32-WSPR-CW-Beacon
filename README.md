@@ -73,5 +73,3 @@ This project uses **PlatformIO**.
    pio device monitor
    ```
 
-## License
-MIT
