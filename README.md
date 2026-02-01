@@ -9,6 +9,7 @@ It uses the ESP32's internal APLL (Audio PLL) routed via I2S to generate a preci
 - **Precision Timing**: Syncs via NTP over WiFi to ensure perfect WSPR timing.
 - **OLED Display**: Shows current status, time, IP address, and transmission progress.
 - **Direct RF Output**: Generates RF directly from a GPIO pin (default GPIO 27).
+- **Power Output**: Approx. **10-15 mW (10-12 dBm)** direct drive.
 
 ## Hardware Required
 1. **ESP32 Development Board** (ESP32-WROOM-32 or similar)
