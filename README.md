@@ -29,6 +29,30 @@ It uses the ESP32's internal APLL (Audio PLL) routed via I2S to generate a preci
 
 **Note**: The RF Output pin can be changed in `src/Config.h`.
 
+## Optional Power Amplifier (Boost to ~250mW)
+To increase power from ~10mW to ~250mW (24dBm), use a simple BS170 MOSFET amplifier.
+
+**Schematic:**
+```mermaid
+graph LR
+    GPIO((GPIO 27)) -- 100R --- G
+    G -- 10k --- GND
+    
+    subgraph BS170
+    G(Gate)
+    D(Drain)
+    S(Source)
+    end
+    
+    S --- GND((GND))
+    VCC((+5V)) -- 10uH Choke --- D
+    D -- 100nF --- LPF((To LPF))
+```
+- **Q1**: BS170 or 2N7000 MOSFET
+- **Choke**: 10uH RF Choke (RFC)
+- **C_Block**: 100nF Ceramic
+- **R_Gate**: 100 ohm (Series), 10k (Pulldown)
+
 ## Low Pass Filter (LPF)
 The output is a square wave. You **MUST** use a Low Pass Filter before connecting an antenna to prevent interference on higher harmonics.
 
