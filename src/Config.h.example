@@ -2,6 +2,9 @@
 
 #include <Arduino.h>
 
+// Copy this file to src/Config.h and fill in your station details.
+// src/Config.h is gitignored so your credentials stay out of the repository.
+
 // WiFi Configuration
 // TODO: Move to WiFiManager or Web Interface
 #define WIFI_SSID "YOUR_SSID"
@@ -13,10 +16,22 @@
 #define TX_POWER_DBM                                                           \
   10 // Not actually used for hardware control yet, just for WSPR encoding
 
-// Frequency Configuration (WSPR Band: 20m)
+// Frequency Configuration
 #define WSPR_FREQ_20M 14095600ULL
+#define FT8_FREQ_20M 14074000ULL
+#define FT8_OFFSET_HZ 1354 // Audio offset within the FT8 passband
 #define WSPR_FREQ_40M 7038600ULL
-#define TARGET_FREQ WSPR_FREQ_20M
+
+// Crystal error correction, in parts per million.
+// Measure the actual carrier with an SDR and adjust:
+//   measured 14095750 Hz vs requested 14095600 Hz -> +150 Hz error
+//   -> FREQ_CORRECTION_PPM = -150.0 / 14.0956 = -10.6
+#define FREQ_CORRECTION_PPM 0.0
+
+// Mode Switches
+#define ENABLE_WSPR true
+#define ENABLE_FT8 true
+#define ENABLE_CW true
 
 // Hardware Configuration
 #define RF_PIN 27 // Safe pin, avoiding Boot (0) or TX/RX (1/3)

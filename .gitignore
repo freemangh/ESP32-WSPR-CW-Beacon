@@ -1,1 +1,4 @@
 .pio
+
+# Local station config (copy from src/Config.h.example)
+src/Config.h
